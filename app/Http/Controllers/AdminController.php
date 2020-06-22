@@ -5,6 +5,12 @@
 	use Illuminate\Http\Request;
 	use App\Repositories\Admin\AdminContract;
 	use Sentinel;
+	use App\User;
+	use App\Client;
+	use App\Loan;
+	use App\Enterprise;
+	use App\Enterpriseu;
+	
 
 	class AdminController extends Controller
 	{
@@ -21,10 +27,8 @@
 	     * @return \Illuminate\Http\Response
 	     */
 	    public function index() {
-	        
-        	
-        	// $users = $this->repo->findAll();
-        	return view('admin.index');
+	        $users = User::orderBy('created_at', 'desc')->get();
+        	return view('my_admin.index')->with('users', $users);
 	    }
 
 	    /**
@@ -119,5 +123,22 @@
 	    public function delete($id)
 	    {
 	        //
-	    }
+		}
+		
+
+		public  function creditIndex(){
+			$loans =  Loan::orderBy('created_at', 'desc')->get();
+			return view('my_admin.view-loan')->with('loans', $loans);
+		
+		}
+		
+		public function fullDetails(Request $request){
+			 $client_id = $request->id;
+			 $client =  Client::whereUser_id($client_id)->first();
+			 $loan =  Loan::whereLoan_id($client_id)->first();
+			 $enterprise = Enterprise::whereUser_id($client_id)->first();
+			 $enterpriseu = Enterpriseu::whereUser_id($client_id)->first();
+			 return view('my_admin.details')->with('client', $client)
+			 ->with('loan', $loan)->with('enterprise',  $enterprise)->with('enterpriseu', $enterpriseu);
+		 }
 	}

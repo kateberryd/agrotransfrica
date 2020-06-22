@@ -68,9 +68,9 @@ class AuthController extends Controller
     public function logout() {
         try {
             Sentinel::logout(null, true);
-            return redirect()->route('home');
+            return redirect()->route('home_page');
         } catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
-            return redirect()->route('home');
+            return redirect()->route('home_page');
         } catch (\ErrorException $e) {
             return redirect()->route('login')
                 ->with('error', 'Session expired. Login again!');

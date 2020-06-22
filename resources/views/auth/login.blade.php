@@ -1,113 +1,76 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Form</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type="text/css" />
+  @extends('my_layouts.app')
+  @section('content')
+      
+
         <style type="text/css">
             /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);*/
 
-            body {
-              background: #456;
-              font-family: 'Open Sans', sans-serif;
-            }
             
-            .login {
-              width: 400px;
-              margin: 16px auto;
-              font-size: 16px;
-            }
             
-            /* Reset top and bottom margins from certain elements */
-            .login-header,
-            .login p {
-              margin-top: 0;
-              margin-bottom: 0;
-            }
 
             /* The triangle form is achieved by a CSS hack */
-            .login-triangle {
-              width: 0;
-              margin-right: auto;
-              margin-left: auto;
-              border: 12px solid transparent;
-              border-bottom-color: #28d;
+            h2{
+              color: #fff;
+              font-size: 40px;
+              padding: 10px;
+              text-align: center;
+      
+            }
+          
+            .header{
+              color: #fff;
+              font-family: fantasy;
+              text-align: center;
+            }
+            .privacy p{
+              font-size: 14px;
+              text-align: center;
             }
 
-            .login-header {
-              background: #28d;
-              padding: 20px;
-              font-size: 1.4em;
-              font-weight: normal;
-              text-align: center;
-              text-transform: uppercase;
-              color: #fff;
-            }
-            
-            .login-container {
-              background: #ebebeb;
-              padding: 12px;
-            }
-            
-            /* Every row inside .login-container is defined with p tags */
-            .login p {
-              padding: 12px;
-            }
-            
-            .login input {
-              box-sizing: border-box;
-              display: block;
-              width: 100%;
-              border-width: 1px;
-              border-style: solid;
-              padding: 16px;
-              outline: 0;
-              font-family: inherit;
-              font-size: 0.95em;
-            }
-            
-            .login input[type="email"],
-            .login input[type="password"] {
-              background: #fff;
-              border-color: #bbb;
-              color: #555;
-            }
-            
-            /* Text fields' focus effect */
-            .login input[type="email"]:focus,
-            .login input[type="password"]:focus {
-              border-color: #888;
-            }
-            
-            .login input[type="submit"] {
-              background: #28d;
-              border-color: transparent;
-              color: #fff;
-              cursor: pointer;
-            }
-            
-            .login input[type="submit"]:hover {
-              background: #17c;
-            }
-            
-            /* Buttons' focus effect */
-            .login input[type="submit"]:focus {
-              border-color: #05a;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="login">
-            <div class="login-triangle"></div>
           
-            <h2 class="login-header">Log in</h2>
+
+]
+        </style>
+
+      <div class="container">
+         <div class="header">
+          <h1 class="mt-5" >Sign In</h1>
+         </div>
+            <div class="card col-md-5 offset-md-4 mt-5">
+            <div class="card-body">
         
-            <form action="{{ route('do_login') }}" method="post" class="login-container">
+            <form action="{{ route('do_login') }}" method="post" class="login-container ">
                 {{ csrf_field() }}
                 
-                <p><input type="email" name="email" placeholder="Email"></p>
-                <p><input type="password" name="password" placeholder="Password"></p>
-                <p><input type="submit" value="Log in"></p>
+              <div class="row">
+                  <div class=" col-md-12">
+
+                   <label> Email Address <span class="text-danger">*</span></label>
+                      <input type="email" name="email" class="form-control">
+                     
+                  </div>
+              </div>
+                
+               <div class="row">
+                  <div class="col-md-12">
+                  <label>Enter Password <span class="text-danger">*</span></label>
+                      <input type="password" name="password" class="form-control">
+                     
+                  </div>
+              
+               </div>
+               <div class="btn-div row">
+                  <div class="col-md-12">
+                  <button type="submit" class="btn btn-success w-100 mt-3 mb-3 pl-3 pr-3">Sign In</button>
+                  <div class="privacy ">
+                    <p class="pt-3 ml-4">Don't have an account? <a href="{{route('register')}}">Sign Up</a></p>
+                    <p class="text-default text-center ml-4"  >ACTA. Agricultural Commodities Trans-African  Alliance</p>
+
+                    </div>
+                </div>
+           </div>  
             </form>
+          </div>
         </div>
-    </body>
-</html>
+      </div>
+  @endsection

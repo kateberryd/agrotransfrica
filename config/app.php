@@ -135,6 +135,8 @@ return [
     |
     */
 
+   
+
     'providers' => [
 
         /*
@@ -162,6 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Aloha\Twilio\Support\Laravel\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +236,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Twilio' => Aloha\Twilio\Support\Laravel\Facade::class,
         
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
@@ -242,5 +246,4 @@ return [
         'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 
     ],
-
 ];

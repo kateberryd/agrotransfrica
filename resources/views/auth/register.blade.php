@@ -1,205 +1,172 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>LMS | Login</title>
-
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+@extends('my_layouts.app')
+@section('content')
+   <style>
+   
+   .input-field{
+       margin: 20px;
+      
+   }
+   /* .text-center{
+       font-size: 20px;
+       padding: 10px;
+      
+   } */
+   
+   h1{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
     
-    <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-        
-    <!--  Light Bootstrap Dashboard core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+   }
+   .p-text{
+       font-size: 18px;
+   }
     
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
-        
-    <!--     Fonts and icons     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
-</head>
-<body> 
-
-<!--<nav class="navbar navbar-transparent navbar-absolute">-->
-<!--    <div class="container">    -->
-<!--        <div class="navbar-header">-->
-<!--            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">-->
-<!--                <span class="sr-only">Toggle navigation</span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--            </button>-->
-<!--            <a class="navbar-brand" href="../dashboard.html">Light Bootstrap Dashboard PRO</a>-->
-<!--        </div>-->
-<!--        <div class="collapse navbar-collapse">       -->
-            
-<!--            <ul class="nav navbar-nav navbar-right">-->
-<!--                <li>-->
-<!--                   <a href="register.html">-->
-<!--                        Register-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-
-
-<div class="wrapper wrapper-full-page">
-    <div class="full-page login-page" data-color="orange" data-image="assets/img/full-screen-image-1.jpg">   
-        
-    <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
-        <div class="content">
-            <div class="container">
-                <div class="row">                   
-                    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                        <form method="post" action="{{ route('register') }}" role="form">
-                            {{ csrf_field() }}
-                        <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
-                            <div class="card card-hidden">
-                                <div class="header text-center">Login</div>
-                                <div class="content">
-                                    <div class="form-group">
-                                        <label> First Name</label>
-                                        <input type="text" placeholder="First Name" name="first_name" class="form-control">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" placeholder="Last Name" name="last_name" class="form-control">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" placeholder="Password" name="password" class="form-control">
-                                    </div>                                    
-                                    <div class="form-group">
-                                        <label>Confirm Password</label>
-                                        <input type="password" placeholder="Confirm Password" name="confirm_password" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="footer text-center">
-                                    <button type="submit" class="btn btn-fill btn-warning btn-wd">Register</button>
-                                </div>
+   .btn{
+       /* float: left !important; */
+       width: 20%;
+       text-align: center;
+   }
+   </style>       
+   <div class="container">
+        <h1 class=" text-center pt-5">Create an account with ACTA</h1>
+        <p class="text-center text-white p-text">Agricultural Commodities Trans-African Alliance</p>
+    <form method="post" action="{{ route('register') }}" role="form" class="mt-5">
+        {{ csrf_field() }}
+    <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
+        <div class="card col-md-8 offset-md-2">
+            <div class="card-body ">
+           
+                 @if($errors->any())
+                            <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach()
                             </div>
-                                
-                        </form>
-                                
-                    </div>                    
+                     @endif
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p><b>{{ $message }}</b></p>
+                    </div>
+                @endif
+                <div class="row">
+                <div class="col-md-4">
+                         <label> First Name <span class="text-danger">*</span></label>
+                        <input type="text" name="first_name" class="form-control">
+                        <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                    </div>
+                    
+                    <div class="col-md-4">
+                         <label>Last Names <span class="text-danger">*</span></label>
+                        <input type="text" name="last_name"  class="form-control">
+                        <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                    </div>
+                    <div class="col-md-4">
+                          <label>Other Name</label>
+                            <input type="text" name="other_name" class="form-control" >
+                        </div>
+                </div>   
+                <div class=" row mt-4">
+                    
+                    <div class="col-md-6">
+                        <label for="email">Email address <span class="text-danger">*</span></label>
+                            <input id="email" type="text"   name="email" class="form-control" value="{{ old('email') }}">
+                            @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                        @endif
+                            
+                        </div>
+                    <div class="col-md-6">
+                            <label>Phone Number <span class="text-danger">*</span></label>
+                            <input type="text"  name="phone_number" class="form-control" >
+                            <span class="text-danger">{{ $errors->first('phone_number') }}</span>
+                    </div>
+                
                 </div>
-            </div>
-        </div>
-    	
-    	<footer class="footer footer-transparent">
-            <div class="container text-center">
-                <!--<nav class="pull-left">-->
-                <!--    <ul>-->
-                <!--        <li>-->
-                <!--            <a href="#">-->
-                <!--                Home-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--        <li>-->
-                <!--            <a href="#">-->
-                <!--                Company-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--        <li>-->
-                <!--            <a href="#">-->
-                <!--                Portfolio-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--        <li>-->
-                <!--            <a href="#">-->
-                <!--               Blog-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--    </ul>-->
-                <!--</nav>-->
-                <p class="copyright pull-right" style="color: #fff;">
-                    &copy; 
-                    <?php 
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                    <label>Gender <span class="text-danger">*</span></label>
+                            <select name="gender" class="form-control" id="gender" >
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="male">Male</option>
+                                <option value="female">female</option>
+                            </select>
+                            <span class="text-danger">{{ $errors->first('gender') }}</span>
+                    </div>
+                    <div  class="col-md-6">
+                    <label>Marital status <span class="text-danger">*</span></label>
+                            <select name="marital" class="form-control" id="marital" >
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="single">single</option>
+                                <option value="Married">Married</option>
+                            </select>
+                           
+                            <span class="text-danger">{{ $errors->first('marital') }}</span>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                       
+                        <div  class=" col-md-6">
+                        <label>Nationality <span class="text-danger">*</span></label>
+                                <select name="country" class="form-control"  id="country" >
+                                  
+                                </select>
+                                <span class="text-danger">{{ $errors->first('country') }}</span>
+                        </div>
+                       
+                        <div  class="col-md-6">
+                        <label>State of origin <span class="text-danger">*</span></label>
+                                <select name ="state" class="form-control " id ="state">
+    
+                                </select>
+                               
+                                <span class="text-danger">{{ $errors->first('state') }}</span>
+                        </div>
                         
-                        $copyYear = 2017; 
-                        $curYear = date('Y'); 
-                        echo $copyYear . (($copyYear != $curYear) ? '-' . $curYear : '');
-                    ?>
-                    <a href="http://nhubnigeria.com">nHub Nigeria.</a>
-                </p>
+                </div>
+                <div class="row mt-4">
+
+                <div  class="col-md-6">
+                 <label>Password <span class="text-danger">*</span></label>
+                        <input type="password"  name="password" class="form-control">
+                     
+                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                    </div>                                    
+                    <div cl class="col-md-6">
+                    <label>Confirm Password <span class="text-danger">*</span></label>
+                        <input type="password"  name="confirm_password" class="form-control" >
+                        <span class="text-danger">{{ $errors->first('confirm_password'
+                        ) }}</span>
+                    </div>
+                </div>
+                <div class="row mt-3 mb-0">
+                  <div class="col-md-12">
+                    <p>
+                        <input type="checkbox" name="check" id="test5" />
+                           <label for="test5"><a href="">By checking you have agreed to our terms and  conditions</a></label>
+                           <span class="text-danger">{{ $errors->first('check') }}</span>
+                         </p>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">   
+                    <div class="submit ">
+                        <button type="submit" class="btn btn-success w-100">Register</button> 
+                    </div>
+                    <div class="privacy ">
+                    <p class="pt-3">Already have an account? <a href="{{route('login')}}">Sign In</a></p>
+                    </div>
+                    </div>
+                </div>
+                </div>  
             </div>
-        </footer>
-
-    </div>                             
-       
-</div>
-
-
-</body>
-    
-    <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
-    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/js/jquery-ui.min.js" type="text/javascript"></script> 
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-	
-	
-	<!--  Forms Validations Plugin -->
-	<script src="assets/js/jquery.validate.min.js"></script>
-	
-	<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-	<script src="assets/js/moment.min.js"></script>
-	
-    <!--  Date Time Picker Plugin is included in this js file -->
-    <script src="assets/js/bootstrap-datetimepicker.js"></script>
-    
-    <!--  Select Picker Plugin -->
-    <script src="assets/js/bootstrap-selectpicker.js"></script>
-    
-	<!--  Checkbox, Radio, Switch and Tags Input Plugins -->
-	<script src="assets/js/bootstrap-checkbox-radio-switch-tags.js"></script>
-	
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-    
-    <!-- Sweet Alert 2 plugin -->
-	<script src="assets/js/sweetalert2.js"></script>
-	
-	<!-- Wizard Plugin    -->
-    <script src="assets/js/jquery.bootstrap.wizard.min.js"></script>
-
-    <!--  Datatable Plugin    -->
-    <script src="assets/js/bootstrap-table.js"></script>
-    
-    <!--  Full Calendar Plugin    -->
-    <script src="assets/js/fullcalendar.min.js"></script>
-    
-    <!-- Light Bootstrap Dashboard Core javascript and methods -->
-	<script src="assets/js/light-bootstrap-dashboard.js"></script>
-	
-	<!--   Sharrre Library    -->
-    <script src="assets/js/jquery.sharrre.js"></script>
-	
-	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
-	    
-    <script type="text/javascript">
-        $().ready(function(){
-            lbd.checkFullPageBackgroundImage();
             
-            setTimeout(function(){
-                // after 1000 ms we add the class animated to the login/register card
-                $('.card').removeClass('card-hidden');
-            }, 700)
-        });
-    </script>
-    
-</html>
+            
+        </div>
+       
+    </form>  
+</div>     
+@stop

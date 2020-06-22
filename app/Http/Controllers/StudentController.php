@@ -4,9 +4,10 @@
 
 	use Illuminate\Http\Request;
 	use App\Repositories\Student\StudentContract;
-	use Sentinel;
+	use Cartalyst\Sentinel\Native\Facades\Sentinel;
+	use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 	use Activation;
-	use App\Student;
+	use App\Agent;
 	use Mail;
 
 	class StudentController extends Controller
@@ -25,7 +26,8 @@
 		*/
 		
 		public function index() {
-			return view('student.index');
+			 $user_first = Sentinel::getUser()->first_name;
+			return view('Client.client-dashboard.dashboard')->with('user_first', $user_first);
 			
 		}
 		
@@ -49,34 +51,31 @@
 		
 		public function store(Request $request) {
 			$adminDetails = [
-				
 				'email' => $request->email,
-				'password' => 'secret'
+				'password' => 'secretpass'
 				
 			];
 			
 			$student = Sentinel::register($adminDetails);
-			// dd($student);
 			$sentinelUser = Sentinel::findById($student->id);
 		
-			
 			$activation = Activation::create($student);
-			// dd($activation);
 			$role = Sentinel::findRoleBySlug('student');
 			$role->users()->attach($student);
 			$this->sendEmail($student, $activation->code);
-			return $student;
+			 $student->save();
+			 return 1324356;
 			
 		}
 		
 		public function activate($email, $activationCode) {
 			
-			$student = Student::whereEmail($email)->first();
+			$student = Agent::whereEmail($email)->first();
 			$sentinelUser = Sentinel::findById($student->id);
 			if(Activation::complete($sentinelUser, $activationCode)) {
-				return redirect()->route('home');
+				return redirect()->route('login');
 			}else {
-				return redirect()->route('home');
+				return redirect()->route('login');
 			}
 		}
 		
@@ -86,7 +85,7 @@
 				'code' => $code
 			], function($message) use ($student) {
 				$message->to($student->email);
-				$message->subject("Activate your LMS Account");
+				$message->subject("Activate your ACTA Account");
 			});
 		}
 		

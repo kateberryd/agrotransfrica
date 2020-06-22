@@ -15,7 +15,8 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
      * @var array
      */
     protected $fillable = [
-        'email', 'password',
+       'first_name', 'last_name', 'email',  'phone_number', 'password', 'other_name', 'gender', 'marital',
+       'country', 'state', 'depositors_name'
     ];
 
     /**
@@ -26,4 +27,14 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
     protected $loginNames = [
         'email',
     ];
+
+    public function client(){
+        return $this->hasOne('App\Client');
+    }
+
+
+    public function loan(){
+        return $this->hasMany('App\Loan');
+    }
+
 }

@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
         
         
         $adminDetails = [
-            'first_name' => 'Nani',
+            'first_name' => 'Mohammed',
             'last_name' => 'admin',
             'phone_number' => '1234567890',
             'email' => 'admin@lms.com',
@@ -32,10 +32,10 @@ class UsersTableSeeder extends Seeder
         $role->users()->attach($admin);
         
         $lecturerDetails = [
-            'first_name' => 'Nani',
-            'last_name' => 'Lecturer',
+            'first_name' => 'Boss',
+            'last_name' => 'Agent',
             'phone_number' => '1234567890',
-            'email' => 'lecturer@lms.com',
+            'email' => 'agent@lms.com',
             'password' => 'secret',
             
         ];
@@ -45,10 +45,10 @@ class UsersTableSeeder extends Seeder
         $role->users()->attach($lecturer);
         
         $studentDetails = [
-            'first_name' => 'Nani',
-            'last_name' => 'Student',
+            'first_name' => 'kate',
+            'last_name' => 'User',
             'phone_number' => '1234567890',
-            'email' => 'student@lms.com',
+            'email' => 'user@lms.com',
             'password' => 'secret',
             
         ];

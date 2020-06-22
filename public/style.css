@@ -1,0 +1,73 @@
+﻿
+label{
+    color: #9e9e9e;
+    font-style:normal;  
+}
+
+
+body{
+    background-color: #272d3b;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+   
+}
+.lead span{
+    color: #ee6e73;
+    font-size: 30px;
+}
+
+h3, .lead{
+    color: #ffffff;
+    text-align: center;
+   
+}
+.lead{
+    font-size: 18px;
+}
+
+.card-body{
+    margin-top: 20px;
+    padding: 40px;
+}
+.btn{
+    float: right;
+}
+nav{
+    background-color: #ee6e73 !important;
+    
+    
+}
+li a{
+    color: #fff !important;
+    padding: 20px !important;
+    font-size: 18px !important;
+}
+
+.login-form{
+margin-top: 50px;
+
+}
+
+@media screen and (max-width: 566px) {
+    .validate {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .validate{
+      width: 50%;
+    }
+  }
+
+  @media screen and (min-width: 480px) {
+    /* body {
+        background-color: lightgreen;
+    } */
+
+    .input-field {
+        width: 100% !important;
+      }
+}

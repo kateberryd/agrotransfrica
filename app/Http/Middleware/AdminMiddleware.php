@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Sentinel;
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
+use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 
 class AdminMiddleware
 {

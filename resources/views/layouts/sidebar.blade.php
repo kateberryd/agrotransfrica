@@ -25,7 +25,7 @@
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    {{ session('currentUser')->first_name }} {{ session('currentUser')->last_name }}
+                   
                     <b class="caret"></b>
                 </a>
                 <div class="collapse" id="collapseExample">
@@ -38,7 +38,7 @@
             </div>
         </div>
     
-        @if(session('currentUserRole') == 'admin')
+    
 			<ul class="nav">
                 <li class="active">
                     <a href="{{ route('admin_dash') }}">
@@ -61,9 +61,9 @@
                     </a>
                 </li>
             </ul>
-		@endif
+	
 		
-		@if(session('currentUserRole') == 'lecturer')
+	
 			<ul class="nav">
                 <li class="active">
                     <a href="{{ route('lecturer_dash') }}">
@@ -80,7 +80,7 @@
                 </li>
                 
                 <li>
-                    <a href="{{ route('register_student') }}">
+                    
                         <i class="pe-7s-date"></i>
                         <p>Register Student</p>
                     </a>
@@ -93,9 +93,9 @@
                     </a>
                 </li>
             </ul>
-		@endif
+	
 		
-		@if(session('currentUserRole') == 'student')
+	
 			<ul class="nav">
                 <li class="active">
                     <a href="#">
@@ -111,6 +111,6 @@
                     </a>
                 </li>
             </ul>
-		@endif
+		
 	</div>
 </div>
